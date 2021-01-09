@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Medicijnen{% endblock %}
+
+{% block sidenavbuttons %}
+    <div id="side-nav">
+        <a class="p-2 list-group-item list-group-item-action" href="{{ path('homepage') }}"> <i class="fas fa-home"></i> Home </a>
+        <a class="p-2 list-group-item list-group-item-action" href="{{ path('patienten') }}"> <i class="fas fa-address-card"></i> Patienten </a>
+        <a class="p-2 list-group-item list-group-item-action" href="{{ path('apotheken') }}"> <i class="fas fa-clinic-medical"></i> Apotheken </a>
+        <a class="p-2 list-group-item list-group-item-action active" href="{{ path('medicijn_index') }}"> <i class="fas fa-prescription-bottle-alt"></i></i> Medicijnen </a>
+        <a class="p-2 list-group-item list-group-item-action" href="{{ path('recepten') }}"> <i class="fas fa-file-medical"></i> Recepten </a>
+        <a class="p-2 list-group-item list-group-item-action" href="{{ path('contact') }}"> <i class="fas fa-envelope"></i> Contact </a>
+        <a class="p-2 list-group-item list-group-item-action" href="{{ path('logout') }}"> <i class="fas fa-sign-out-alt"></i> Log uit </a>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <h1>Medicijnen</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Naam</th>
+                <th>Werking</th>
+                <th>Bijwerking</th>
+                <th>Prijs</th>
+                <th>Verzekerd</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for medicijn in medicijns %}
+            <tr>
+                <td>{{ medicijn.id }}</td>
+                <td>{{ medicijn.Naam }}</td>
+                <td>{{ medicijn.Werking }}</td>
+                <td>{{ medicijn.Bijwerking }}</td>
+                <td>{{ medicijn.Prijs }}</td>
+                <td>{{ medicijn.Verzekerd ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('medicijn_show', {'id': medicijn.id}) }}">show</a>
+                    <a href="{{ path('medicijn_edit', {'id': medicijn.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('medicijn_new') }}">Create new</a>
+{% endblock %}
