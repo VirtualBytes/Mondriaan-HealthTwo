@@ -1,21 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Medicijnen{% endblock %}
+{% block title %}Medicijn index{% endblock %}
 
-{% block sidenavbuttons %}
-    <div id="side-nav">
-        <a class="p-2 list-group-item list-group-item-action" href="{{ path('homepage') }}"> <i class="fas fa-home"></i> Home </a>
-        <a class="p-2 list-group-item list-group-item-action" href="{{ path('patienten') }}"> <i class="fas fa-address-card"></i> Patienten </a>
-        <a class="p-2 list-group-item list-group-item-action" href="{{ path('apotheken') }}"> <i class="fas fa-clinic-medical"></i> Apotheken </a>
-        <a class="p-2 list-group-item list-group-item-action active" href="{{ path('medicijn_index') }}"> <i class="fas fa-prescription-bottle-alt"></i></i> Medicijnen </a>
-        <a class="p-2 list-group-item list-group-item-action" href="{{ path('recepten') }}"> <i class="fas fa-file-medical"></i> Recepten </a>
-        <a class="p-2 list-group-item list-group-item-action" href="{{ path('contact') }}"> <i class="fas fa-envelope"></i> Contact </a>
-        <a class="p-2 list-group-item list-group-item-action" href="{{ path('logout') }}"> <i class="fas fa-sign-out-alt"></i> Log uit </a>
-    </div>
-{% endblock %}
-
-{% block content %}
-    <h1>Medicijnen</h1>
+{% block body %}
+    <h1>Medicijn index</h1>
 
     <table class="table">
         <thead>

@@ -17,27 +17,20 @@ class BezoekerController extends AbstractController{
      * @Route("/patienten", name="patienten")
      */
     public function patientenAction(){
-        return $this->render('medewerker/login.html.twig');
+        return $this->render('security/login.html.twig');
     }
 
      /**
      * @Route("/apotheken", name="apotheken")
      */
     public function apothekenAction(){
-        return $this->render('medewerker/login.html.twig');
+        return $this->render('security/login.html.twig');
     }
-
-     /**
-     * @Route("/recepten", name="recepten")
-     */
-    public function receptenAction(){
-        return $this->render('medewerker/login.html.twig');
-    }
-
+        
     /**
      * @Route("/contact", name="contact")
      */
     public function contactAction(){
-        return $this->render('medewerker/login.html.twig');
+        return $this->render('security/login.html.twig');
     }
 }

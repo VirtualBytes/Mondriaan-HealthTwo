@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20210109023936 extends AbstractMigration
+final class Version20210119113241 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -20,12 +20,12 @@ final class Version20210109023936 extends AbstractMigration
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
-
+        $this->addSql('ALTER TABLE recept ADD dosis VARCHAR(255) NOT NULL, ADD prijs DOUBLE PRECISION NOT NULL');
     }
 
     public function down(Schema $schema) : void
     {
         // this down() migration is auto-generated, please modify it to your needs
-
+        $this->addSql('ALTER TABLE recept DROP dosis, DROP prijs');
     }
 }

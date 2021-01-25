@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\MedicijnRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use phpDocumentor\Reflection\Types\Integer;
 
@@ -42,6 +44,16 @@ class Medicijn
      * @ORM\Column(type="boolean")
      */
     private $Verzekerd;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Recept::class, mappedBy="medicijn")
+     */
+    private $recepten;
+
+    public function __construct()
+    {
+        $this->recepten = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -106,6 +118,40 @@ class Medicijn
     public function setVerzekerd(bool $Verzekerd): self
     {
         $this->Verzekerd = $Verzekerd;
+
+        return $this;
+    }
+
+    public function __toString(){
+        return $this->Naam;
+    }
+
+    /**
+     * @return Collection|Recept[]
+     */
+    public function getRecepten(): Collection
+    {
+        return $this->recepten;
+    }
+
+    public function addRecepten(Recept $recepten): self
+    {
+        if (!$this->recepten->contains($recepten)) {
+            $this->recepten[] = $recepten;
+            $recepten->setMedicijn($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRecepten(Recept $recepten): self
+    {
+        if ($this->recepten->removeElement($recepten)) {
+            // set the owning side to null (unless already changed)
+            if ($recepten->getMedicijn() === $this) {
+                $recepten->setMedicijn(null);
+            }
+        }
 
         return $this;
     }
